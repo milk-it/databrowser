@@ -1,0 +1,46 @@
+<% content_for :js do %>
+  Event.observe(window, "load", function() {
+    var monitoring, timeout;
+    monitoring = $("monitoring").checked;
+    timeout = 5000;
+    function tableMonitor()
+    {
+      console.log("tableMonitor monitoring: " + monitoring + ", timeout: " + timeout);
+      if (monitoring)
+        <%= remote_function(:url => {:action => "browse", :model => @model.to_s}, :with => "$('search_form').serialize()") %>
+  
+      setTimeout(tableMonitor, timeout);
+    }
+    Event.observe("monitoring", "click", function() { monitoring = $("monitoring").checked; });
+    setTimeout(tableMonitor, timeout);
+  });
+<% end %>
+<% form_tag({:model => @model.to_s}, {:id => "search_form"}) do %>
+<div id="search-box" style="display:none">
+<p>
+    <label>Select</label><br />
+    <% for column in @model.column_names %>
+    <label><%= check_box_tag("select[]", column, params[:select].include?(column)) %><%= column %></label>
+    <% end %>
+</p>
+<p>
+    <label for="conditions">Conditions:</label><br />
+    <%= text_area_tag("conditions", params[:conditions], :style => "width:100%", :rows => "4") %>
+</p>
+<input type="submit" value="Buscar" />
+<% end %>
+</div>
+<a href="javascript:showSearchBox()" id="show-search">Search</a>
+<br />
+<table id="data-table">
+  <thead>
+  <th colspan="2"></th>
+  <% for column in params[:select] %>
+    <th><%= column %></th>
+  <% end %>
+  </thead>
+  <tbody style="height:200px;overflow:scroll" id="objects_body">
+    <%= render :partial => "obj", :collection => @objects %>
+  </tbody>
+</table>
+<label><input type="checkbox" id="monitoring" checked="checked" />Monitoring</label>

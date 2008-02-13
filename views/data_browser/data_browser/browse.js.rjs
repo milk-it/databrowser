@@ -1,0 +1,1 @@
+page[:objects_body].innerHTML = render(:partial => "obj", :collection => @objects)

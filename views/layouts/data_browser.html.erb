@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Rails DataBrowser</title>
+<style>
+html 	{width:100%; }
+body 	{background:#5B6266 repeat-x 0 0; margin:0 0 30px 0; padding:0px; width:100%; font-family:"Trebuchet MS", Verdana; line-height:150%; font-size:90%; color:#000000; }
+p		{padding:0 0 15px 0; margin:0; }
+
+a {text-decoration:underline; color:#9D0D10; }
+a:hover	{text-decoration:none; }
+
+h2		{padding:0 0 5px 0; margin:0; font-size:140%; font-weight:normal; }
+
+#all 		{text-align:center; width:100%; }
+#container 	{margin:0 auto; text-align:left; width:90%; }
+#header		{padding:35px 0; background:#990000 }
+.block		{padding:20px; border:5px solid #FFFFFF; background:#7F8488; color:#FFFFFF; margin:30px 0 0 0; }
+#content	{padding:20px 20px 5px 20px; border:5px solid #F2F2F2; background:#FFFFFF; margin:30px 0 0 0; }
+
+#header h1 { font-weight:normal; margin:0; padding:0; font-size:180%; color:#FFFFFF; text-align:right; }
+#header h1 a { font-weight:normal; font-size:180%; color:#FFFFFF; }
+#header ul	{float:left; margin:0; padding:9px 0; }
+#header li	{margin:0; padding:0; list-style:none; display:inline; }
+#header ul a		{color:#000000; background:#DADADA repeat-x 0 0; padding:8px 20px 5px 20px; text-decoration:none; border:1px solid #FFFFFF; }
+#header ul a:hover	{background:#C5C5C5 repeat-x 0 0; }
+
+.block h3	{margin:0; padding:0; font-weight:normal; font-size:140%; line-height:160%; }
+.block p	{font-size:90%; padding:0; text-align:center; }
+.block a	{color:#FFFFFF; }
+.block { width: 720px }
+
+#home #homeLink,
+#profile #profileLink,
+#portfolio #portfolioLink,
+#testimonials #testimonialsLink,
+#contact #contactLink
+{color:#000000; background:#FFFFFF repeat-x  0 0;; padding:8px 20px 5px 20px; text-decoration:none; }
+
+.clearfix:after 	{content:"."; display:block; height:0; clear:both; visibility:hidden; }
+.clearfix 			{display:inline-block; }
+/* Hides from IE-mac \*/
+* html .clearfix 	{height:1%; }
+.clearfix 			{display:block; }
+/* End hide from IE-mac */
+
+#data-table {
+clear:both;
+border-collapse:collapse;
+width:100%;
+border-top:double #333;
+border-bottom:3px solid #333;
+}
+
+#data-table th {
+background:#333;
+color:white;
+font-weight:normal;
+}
+
+#data-table th, td {
+height:18px;
+text-align:left;
+padding:3px 4px;
+}
+
+#data-table tr.odd td {
+background-color:#F1F1EF;
+}
+
+#data-table td.check input {
+border:0;
+}
+</style>
+<%= javascript_include_tag "prototype" %>
+<script>
+function showSearchBox()
+{
+document.getElementById("search-box").style.display = "block";
+document.getElementById("show-search").style.display = "none";
+}
+<%= yield :js %>
+</script>
+</head>
+
+<body id="home">
+<div id="all">
+	<div id="container">
+		<div id="header">
+		      <h1><%= link_to("<em>rails</em>databrowser", :action => "index") %></h1>
+		      <ul>
+		      <% for model in @models %>
+                        <li><%= link_to(model.to_s, :action => "browse", :model => model.to_s) %></li>
+		      <% end %>
+		      </ul>
+		</div>
+                <% if @model %>
+	        <h1><%= @model.to_s %> (<%=@model.table_name%> table) <%= link_to("new", :action => "new", :model => @model.to_s) %></h1>
+	        <% end %>
+                <%= content_tag(:h3, flash[:notice]) if flash[:notice] %>
+		<div id="content">
+		      <%= yield %>
+		</div>
+	</div>
+</div>
+</body>
+</html>

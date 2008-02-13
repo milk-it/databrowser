@@ -1,0 +1,9 @@
+  <%
+    @model.columns_hash.each do |name, column|
+      next if name.eql?("id")
+  %>
+  <p>
+    <label><%= column.human_name %><br />
+    <%= form.text_field(name) %></label>
+  </p>
+  <% end %>

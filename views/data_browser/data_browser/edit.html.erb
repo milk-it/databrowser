@@ -1,0 +1,4 @@
+<% form_for(@obj, :url => {:action => "update", :id => @obj.id, :model => @model.to_s}) do |f| %>
+  <%= render :partial => "form", :locals => {:form => f} %>
+  <%= submit_tag("Save") %> or <%= link_to("cancel", :action => "browse", :model => @model.to_s) %>
+<% end %>

@@ -1,0 +1,8 @@
+<ul>
+  <% @models.each do |model| %>
+  <li>
+    <%= link_to(model.to_s, :action => "browse", :model => model.to_s) %> (<%=model.count%> records)
+    <%= link_to("empty", "#") %>
+  </li>
+  <% end %>
+</ul>
