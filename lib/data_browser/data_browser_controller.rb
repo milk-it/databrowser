@@ -23,6 +23,12 @@ module DataBrowser
       end
     end
 
+    def empty
+      @model.delete_all
+      flash[:notice] = "#{@model.to_s} model was emptied"
+      redirect_to :action => "index"
+    end
+
     def new
       @obj = @model.new
     end

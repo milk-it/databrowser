@@ -2,7 +2,7 @@
   <% @models.each do |model| %>
   <li>
     <%= link_to(model.to_s, :action => "browse", :model => model.to_s) %> (<%=model.count%> records)
-    <%= link_to("empty", "#") %>
+    <%= link_to("empty", {:action => "empty", :model => model.to_s}, :confirm => "Are you sure?") %>
   </li>
   <% end %>
 </ul>
