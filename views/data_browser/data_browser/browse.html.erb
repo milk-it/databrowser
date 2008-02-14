@@ -1,20 +1,3 @@
-<% content_for :js do %>
-  Event.observe(window, "load", function() {
-    var monitoring, timeout;
-    monitoring = $("monitoring").checked;
-    timeout = 5000;
-    function tableMonitor()
-    {
-      console.log("tableMonitor monitoring: " + monitoring + ", timeout: " + timeout);
-      if (monitoring)
-        <%= remote_function(:url => {:action => "browse", :model => @model.to_s}, :with => "$('search_form').serialize()") %>
-  
-      setTimeout(tableMonitor, timeout);
-    }
-    Event.observe("monitoring", "click", function() { monitoring = $("monitoring").checked; });
-    setTimeout(tableMonitor, timeout);
-  });
-<% end %>
 <% form_tag({:model => @model.to_s}, {:id => "search_form"}) do %>
 <div id="search-box" style="display:none">
 <p>
@@ -43,4 +26,3 @@
     <%= render :partial => "obj", :collection => @objects %>
   </tbody>
 </table>
-<label><input type="checkbox" id="monitoring" checked="checked" />Monitoring</label>

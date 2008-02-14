@@ -1,6 +1,6 @@
     <tr class="<%= cycle("odd", "") %>">
-      <td><%= link_to("Edit", :action => "edit", :id => obj.send(@model.primary_key), :model => @model.to_s) %></td>
-      <td><%= link_to("Delete", :action => "destroy", :id => obj.send(@model.primary_key), :model => @model.to_s) %></td>
+      <td><%= link_to("Edit", :action => "edit", :id => obj.to_param, :model => @model.to_s) %></td>
+      <td><%= link_to("Delete", :action => "destroy", :id => obj.to_param, :model => @model.to_s) %></td>
       <% for column in params[:select] %>
       <td><%= obj.attributes[column] %></td>
       <% end %>
