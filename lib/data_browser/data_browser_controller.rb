@@ -65,21 +65,18 @@ module DataBrowser
 
     def load_models
       # this will make that the models won't be fetched in every request
-      unless @@models
-        if DataBrowser::Models.size > 0
-          @@models = DataBrowser::Models
-        else
-          models_root = File.join(RAILS_ROOT, "app", "models", "*.rb")
-          @@models = Dir.glob(models_root).collect { |c|
-            c = File.basename(c).gsub(/\.rb/, "").classify
-            c = Kernel.const_get(c)
-            c if c < ActiveRecord::Base
-          }
-          @@models.compact!
+      if DataBrowser.models.size == 0
+        Logger.new("logger.log").debug("buscando models")
+        models_root = File.join(RAILS_ROOT, "app", "models", "*.rb")
+        models = Dir.glob(models_root).collect do |c|
+          c = File.basename(c).gsub(/\.rb/, "").classify
+          c = Kernel.const_get(c)
+          c if c < ActiveRecord::Base
         end
+        DataBrowser.models = models.compact
       end
 
-      @models = @@models
+      @models = DataBrowser.models
     end
 
     def load_current_model

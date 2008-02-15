@@ -2,8 +2,8 @@
 require 'digest/sha1'
 
 module DataBrowser
-  Models = []
   @@user_digest = nil
+  @@models = []
 
   class << self
     def should_auth
@@ -14,7 +14,7 @@ module DataBrowser
       Digest::SHA1.hexdigest(user.to_s + pass.to_s)
     end
   
-    def set_user(user, pass)
+    def protect(user, pass)
       @@user_digest = digest(user, pass)
     end
 
@@ -25,6 +25,16 @@ module DataBrowser
 
     def check_digest(digest)
       @user_digest == digest
+    end
+
+    # models configuration
+
+    def models
+      @@models
+    end
+
+    def models=(models)
+      @@models = models if models.is_a?(Array)
     end
   end
 end
