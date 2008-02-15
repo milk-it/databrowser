@@ -66,7 +66,6 @@ module DataBrowser
     def load_models
       # this will make that the models won't be fetched in every request
       if DataBrowser.models.size == 0
-        Logger.new("logger.log").debug("buscando models")
         models_root = File.join(RAILS_ROOT, "app", "models", "*.rb")
         models = Dir.glob(models_root).collect do |c|
           c = File.basename(c).gsub(/\.rb/, "").classify
