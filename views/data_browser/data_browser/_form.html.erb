@@ -1,9 +1,25 @@
+<ul>
   <%
     @model.columns_hash.each do |name, column|
       next if name.eql?("id")
   %>
-  <p>
-    <label><%= column.human_name %><br />
-    <%= form.text_field(name) %></label>
-  </p>
+  <li>
+    <label><%= column.human_name %></label>
+    <div>
+        <%= case column.type
+            when :date
+            form.date_select(name)
+            when :datetime
+            form.datetime_select(name)
+            when :text
+            form.text_area(name)
+            when :boolean
+            form.check_box(name)
+            else
+            form.text_field(name)
+            end
+        %>
+    </div>
+  </li>
   <% end %>
+</ul>

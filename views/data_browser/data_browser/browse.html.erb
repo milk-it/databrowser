@@ -22,7 +22,10 @@
     <th><%= column %></th>
   <% end %>
   </thead>
-  <tbody style="height:200px;overflow:scroll" id="objects_body">
+  <tbody sid="objects_body">
     <%= render :partial => "obj", :collection => @objects %>
+    <% if @objects.size == 0 %>
+    <td class="empty" colspan="<%=params[:select].size + 2%>">Empty model</td>
+    <% end %>
   </tbody>
 </table>

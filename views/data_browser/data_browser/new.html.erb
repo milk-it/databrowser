@@ -1,4 +1,6 @@
 <% form_for(@obj, :url => {:action => "create", :model => @model.to_s}) do |f| %>
   <%= render :partial => "form", :locals => {:form => f} %>
-  <%= submit_tag("Create") %> or <%= link_to("cancel", :action => "browse", :model => @model.to_s) %>
+  <div class="button">
+      <%= submit_tag("Create") %> or <%= link_to("cancel", :action => "browse", :model => @model.to_s) %>
+  </div>
 <% end %>

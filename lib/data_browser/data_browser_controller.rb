@@ -72,7 +72,7 @@ module DataBrowser
           c = Kernel.const_get(c)
           c if c < ActiveRecord::Base
         end
-        DataBrowser.models = models.compact
+        DataBrowser.models = models.compact.sort { |a, b| a.to_s <=> b.to_s }
       end
 
       @models = DataBrowser.models

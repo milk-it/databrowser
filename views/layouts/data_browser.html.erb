@@ -4,19 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Rails DataBrowser</title>
 <style type="text/css">
-
-/*
-
-.block		{padding:20px; border:5px solid #FFFFFF; background:#7F8488; color:#FFFFFF; margin:30px 0 0 0; }
-#content	{padding:20px 20px 5px 20px; border:5px solid #F2F2F2; background:#FFFFFF; margin:30px 0 0 0; }
-
-.block h3	{margin:0; padding:0; font-weight:normal; font-size:140%; line-height:160%; }
-.block p	{font-size:90%; padding:0; text-align:center; }
-.block a	{color:#FFFFFF; }
-.block { width: 720px }
-
-*/
-
 /* -------------------------------------------------------------- 
   
    reset.css
@@ -60,7 +47,7 @@ a img { border: none; }
 
 /* ====== Databrowser ====== */
 
-body {font-family:Arial, Helvetica, sans-serif; font-size:80%; margin:1.5em; }
+body {font-family:Arial, Helvetica, sans-serif; font-size:80%; padding:1%; margin:0; border-top:2px solid #e6646c; }
 
 a:link, a:visited { color:#09C; text-decoration:underline; }
 a:hover { text-decoration: none; color: #007EA8; }
@@ -73,14 +60,15 @@ font-size:150%;
 text-align:right;
 }
 
-h1 a {color:#B6343C !important; text-decoration:none;}
+h1 a b { color:#E6646C; }
+
+h1 a {color:#B6343C !important; text-decoration:none !important;}
 h1 a:hover { color: #8B272D }
 
 h2 {
 font-family:Georgia, "Times New Roman", Times, serif;
-font-size:120%;
+font-size:140%;
 color:#444;
-font-weight:bold;
 }
 
 h3 {
@@ -90,49 +78,58 @@ color:#666;
 
 table {
 width:100%;
-margin:auto;
+margin:1% auto;
 font-size:90%;
 border-collapse:collapse;
 }
 
 table th, table td {
-padding:2px;
+padding:1px 0 1px 3px;
 }
 
 table th {
 background-color:#EEF8FB;
 color:#B6343C;
 border:1px solid #DEF1F8;
-border-width:1px 0 1px 0;
+border-width:1px 0 1px 1px;
 font-weight:bold;
+padding:1px 4px 1px 4px;
 }
 
 table td {
 border-bottom:1px dotted #E5E5E5;
 }
 
+table td.empty {text-align:center}
+
 table tr.odd td {
-background-color:#F1F1EF;
+background-color:#F9F9FF;
 }
 
-ul {
+div#content ul {
 list-style:circle inside;
-font-size:100%;
+font-size:80%;
 color:#999;
 }
 
+div#content {
+padding-left:13%;
+}
+
 div#content ul a {
-font-size:80%;
+font-size:125%;
 }
 
 ul#models {
 float:left;
-border:1px solid #F9EFC4;
-padding:10px;
+border:1px solid #ddd;
+-moz-border-radius:6px;
+padding:1%;
 margin-right:15px;
 list-style:circle inside;
 line-height: 1.6;
 background:#fff;
+width:10%;
 }
 
 li {
@@ -153,7 +150,6 @@ list-style:none;
 margin:6px 0 10px 0;
 clear:none;
 float:left;
-width:100%;
 list-style:none !important;
 text-align:left;
 }
@@ -167,10 +163,9 @@ background:none;
 line-height:normal;
 margin:0;
 }
-	
+
 form li div li {float:none;border:none;}
 form li div ul {float:none;margin:none;border:0;}
-	
 form label {
 float:left;
 display:block;
@@ -183,44 +178,60 @@ float:none !important;
 margin-top:-2px;
 width:auto;
 }
-	
+
 form li div {
 margin-left:10px;
 float:left;
 }
 
 form li div div { margin-left:0 !important; float:none !important; }
-	
-div.button {margin-top:6px; padding-left:200px;}
+
+div.button {margin-top:6px; padding-left:200px;clear:both}
 div.button input { color:#069; font-weight:bold; background: #F9F0C4; border:2px solid #F6E69F; padding-left:10px; padding-right:10px; }
 div.button input.imagem { background:none !important; border:0 !important;}
 
+div#footer {border-top:1px solid;
+clear:both;
+color:#BBBBBB;
+font-size:10px;
+height:31px;
+padding:0.25em 0pt;}
+div#footer p.left {float:left;}
+div#footer p.right {float:right;text-align:right;}
+p {margin:4px 0 0 0}
 </style>
-<%= javascript_include_tag "prototype" %>
 <script>
 function showSearchBox()
 {
 document.getElementById("search-box").style.display = "block";
 document.getElementById("show-search").style.display = "none";
 }
-<%= yield :js %>
 </script>
 </head>
 <body id="home">
-		      <h1><%= link_to("<em>rails</em>databrowser", :action => "index") %></h1>
-			  <ul id="models">
-		      <% for model in @models %>
-                        <li><%= link_to(model.to_s, :action => "browse", :model => model.to_s) %></li>
-		      <% end %>
-			  </ul>
-		<div id="content">
-		     <% if @model %>
-	        <h2><%= @model.to_s %> (<%=@model.table_name%> table) <%= link_to("new", :action => "new", :model => @model.to_s) %></h2>
-	        <% end %>
-                <%= content_tag(:h3, flash[:notice]) if flash[:notice] %>
-		      <%= yield %>
-		</div>
-		<div style="clear:both">&nbsp;</div>
-
+    <h1><%= link_to("<b>Rails</b>DataBrowser", :action => "index") %></h1>
+    <ul id="models">
+	<% for model in @models %>
+        <li><%= link_to(model.to_s, :action => "browse", :model => model.to_s) %></li>
+	<% end %>
+    </ul>
+    <div id="content">
+        <% if @model %>
+        <h2><%= @model.to_s %> (<%=@model.table_name%> table) <%= link_to("new", :action => "new", :model => @model.to_s) %></h2>
+        <% end %>
+        <%= content_tag(:h3, flash[:notice], :class => "notice") if flash[:notice] %>
+        <%= yield %>
+    </div>
+    <div style="clear:both">&nbsp;</div>
+    <div id="footer">
+        <p class="left">
+        Powered by <%= link_to "DataBrowser", :action => "about" %><br />
+        by <a href="http://milk-it.net">Milk-it</a>
+        </p>
+        <p class="right">
+            Visit Rails DataBrowser Official WebSite.<br />
+            <a href="http://trac.milk-it.net/open/wiki/DataBrowser">trac.milk-it.net/open</a>
+        </p>
+    </div>
 </body>
 </html>

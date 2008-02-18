@@ -1,6 +1,7 @@
 with_options :controller => "data_browser/data_browser" do |db|
-  db.connect "/databrowser"
-  db.connect "/databrowser/:model", :action => "browse"
-  db.connect "/databrowser/:model/:action"
-  db.connect "/databrowser/:model/:id/:action"
+  db.connect "/#{@root}"
+  db.connect "/#{@root}/about", :action => "about"
+  db.connect "/#{@root}/:model", :action => "browse"
+  db.connect "/#{@root}/:model/:action"
+  db.connect "/#{@root}/:model/:id/:action"
 end
