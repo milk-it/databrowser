@@ -7,76 +7,14 @@
 
 /*
 
-
-html 	{width:100%; }
-body 	{background:#5B6266 repeat-x 0 0; margin:0 0 30px 0; padding:0px; width:100%; font-family:"Trebuchet MS", Verdana; line-height:150%; font-size:90%; color:#000000; }
-p		{padding:0 0 15px 0; margin:0; }
-
-a {text-decoration:underline; color:#9D0D10; }
-a:hover	{text-decoration:none; }
-
-h2		{padding:0 0 5px 0; margin:0; font-size:140%; font-weight:normal; }
-
-#all 		{text-align:center; width:100%; }
-#container 	{margin:0 auto; text-align:left; width:90%; }
-#header		{padding:35px 0; background:#990000 }
 .block		{padding:20px; border:5px solid #FFFFFF; background:#7F8488; color:#FFFFFF; margin:30px 0 0 0; }
 #content	{padding:20px 20px 5px 20px; border:5px solid #F2F2F2; background:#FFFFFF; margin:30px 0 0 0; }
-
-#header h1 { font-weight:normal; margin:0; padding:0; font-size:180%; color:#FFFFFF; text-align:right; }
-#header h1 a { font-weight:normal; font-size:180%; color:#FFFFFF; }
-#header ul	{float:left; margin:0; padding:9px 0; }
-#header li	{margin:0; padding:0; list-style:none; display:inline; }
-#header ul a		{color:#000000; background:#DADADA repeat-x 0 0; padding:8px 20px 5px 20px; text-decoration:none; border:1px solid #FFFFFF; }
-#header ul a:hover	{background:#C5C5C5 repeat-x 0 0; }
 
 .block h3	{margin:0; padding:0; font-weight:normal; font-size:140%; line-height:160%; }
 .block p	{font-size:90%; padding:0; text-align:center; }
 .block a	{color:#FFFFFF; }
 .block { width: 720px }
 
-#home #homeLink,
-#profile #profileLink,
-#portfolio #portfolioLink,
-#testimonials #testimonialsLink,
-#contact #contactLink
-{color:#000000; background:#FFFFFF repeat-x  0 0;; padding:8px 20px 5px 20px; text-decoration:none; }
-
-.clearfix:after 	{content:"."; display:block; height:0; clear:both; visibility:hidden; }
-.clearfix 			{display:inline-block; }
-
-
-* html .clearfix 	{height:1%; }
-.clearfix 			{display:block; }
-
-
-#data-table {
-clear:both;
-border-collapse:collapse;
-width:100%;
-border-top:double #333;
-border-bottom:3px solid #333;
-}
-
-#data-table th {
-background:#333;
-color:white;
-font-weight:normal;
-}
-
-#data-table th, td {
-height:18px;
-text-align:left;
-padding:3px 4px;
-}
-
-#data-table tr.odd td {
-background-color:#F1F1EF;
-}
-
-#data-table td.check input {
-border:0;
-}
 */
 
 /* -------------------------------------------------------------- 
@@ -122,27 +60,30 @@ a img { border: none; }
 
 /* ====== Databrowser ====== */
 
-body {font-family:Arial, Helvetica, sans-serif;}
+body {font-family:Arial, Helvetica, sans-serif; font-size:80%; margin:1.5em; }
 
 a:link, a:visited { color:#09C; text-decoration:underline; }
-a:hover { text-decoration: none; color: #039; }
+a:hover { text-decoration: none; color: #007EA8; }
 a:active { color:orange; }
 
 h1 {
 font-family:Georgia, "Times New Roman", Times, serif;
 color:#B6343C;
-font-size:200%;
+font-size:120%;
 text-align:right;
 }
 
+h1 a {color:#B6343C; text-decoration:none;}
+h1 a:hover { color: #8B272D }
+
 h2 {
-font-size:150%;
+font-size:100%;
 color:#444;
 font-weight:bold;
 }
 
 h3 {
-font-size:120%;
+font-size:90%;
 color:#666;
 border-left:3px solid #ddd;
 padding-left:15px;
@@ -151,7 +92,8 @@ padding-left:15px;
 table {
 width:100%;
 margin:auto;
-font-size:90%;
+font-size:80%;
+border-collapse:collapse;
 }
 
 table th, table td {
@@ -159,20 +101,36 @@ padding:2px;
 }
 
 table th {
-background-color:#E8F6FA;
+background-color:#EEF8FB;
 color:#B6343C;
-border:1px solid #D0ECF5;
+border:1px solid #E4F4F9;
+border-width:1px 0 1px 0;
+font-weight:bold;
 }
 
 table td {
 border-bottom:1px dotted #E5E5E5;
 }
 
+table tr.odd td {
+background-color:#F1F1EF;
+}
+
+ul {
+list-style:circle inside;
+font-size:70%;
+color:#999;
+}
+
+ul a {
+font-size:80%;
+}
+
 ul#models {
 float:left;
 border:1px solid #F9EFC4;
 padding:10px;
-margin-left:15px;
+margin-right:15px;
 list-style:circle inside;
 line-height: 1.6;
 background:#fff;
