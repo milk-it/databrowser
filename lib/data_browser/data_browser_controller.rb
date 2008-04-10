@@ -1,7 +1,7 @@
 module DataBrowser
   class DataBrowserController < ActionController::Base
     layout "data_browser"
-    protect_from_forgery
+    protect_from_forgery :secret => Time.now.to_i.to_s
     before_filter :load_models, :authenticate
     before_filter :load_current_model, :except => [:index]
 
