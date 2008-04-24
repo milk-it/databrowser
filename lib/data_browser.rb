@@ -19,12 +19,12 @@ module DataBrowser
     end
 
     def auth(user, pass)
-      @@user_digest if digest(user, pass) == @@user_digest
+      return @@user_digest if digest(user, pass) == @@user_digest
       false
     end
 
     def check_digest(digest)
-      @user_digest == digest
+      @@user_digest == digest
     end
 
     # models configuration

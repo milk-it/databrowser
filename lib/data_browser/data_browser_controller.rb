@@ -83,7 +83,7 @@ module DataBrowser
     end
 
     def authenticate
-      if DataBrowser::should_auth && DataBrowser::check_digest(session[:databrowser])
+      if DataBrowser::should_auth && !DataBrowser::check_digest(session[:databrowser])
         authenticate_or_request_with_http_basic("DataBrowser") do |user, pass|
           session[:databrowser] = DataBrowser::auth(user, pass)
         end
