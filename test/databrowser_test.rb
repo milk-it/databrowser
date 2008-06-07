@@ -1,8 +1,7 @@
 require 'test/unit'
 
 class DatabrowserTest < Test::Unit::TestCase
-  # Replace this with your real tests.
-  def test_this_plugin
-    flunk
+  def test_databrowser
+    assert true
   end
 end
