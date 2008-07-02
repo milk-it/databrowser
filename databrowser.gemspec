@@ -10,9 +10,9 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README", "MIT-LICENSE"]
   s.files = ["README", "Rakefile", "MIT-LICENSE", "install.rb", "uninstall.rb", "lib/data_browser.rb", "lib/data_browser/data_browser.rb", "lib/data_browser/data_browser_controller.rb", "lib/data_browser/routing.rb", "lib/data_browser/views/data_browser/data_browser/about.html.erb", "lib/data_browser/views/data_browser/data_browser/browse.html.erb", "lib/data_browser/views/data_browser/data_browser/browse.js.rjs", "lib/data_browser/views/data_browser/data_browser/edit.html.erb", "lib/data_browser/views/data_browser/data_browser/_form.html.erb", "lib/data_browser/views/data_browser/data_browser/index.html.erb", "lib/data_browser/views/data_browser/data_browser/new.html.erb", "lib/data_browser/views/data_browser/data_browser/_obj.rhtml", "lib/data_browser/views/layouts/data_browser.html.erb"]
   s.has_rdoc = false
-  s.homepage = "http://trac.milk-it.net/open/wiki/DataBrowser"
+  s.homepage = "http://redmine.milk-it.net/projects"
   s.post_install_message = %q{
-Access http://trac.milk-it.net/open/wiki/DataBrowser to learn how to use DataBrowser.
+Access http://redmine.milk-it.net/projects to learn how to use DataBrowser.
 It's simple as add 2 lines in your routes.rb!
 }
   s.rdoc_options = []
