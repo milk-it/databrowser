@@ -1,6 +1,6 @@
 <ul>
   <%
-    @model.columns_hash.each do |name, column|
+    current_model.columns_hash.each do |name, column|
       next if name.eql?("id")
   %>
   <li>

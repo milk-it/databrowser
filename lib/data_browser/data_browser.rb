@@ -4,6 +4,7 @@ require 'digest/sha1'
 module DataBrowser
   @@user_digest = nil
   @@models = []
+  @@tables = []
 
   class << self
     def should_auth
@@ -35,6 +36,14 @@ module DataBrowser
 
     def models=(models)
       @@models = models if models.is_a?(Array)
+    end
+
+    def tables
+      @@tables
+    end
+
+    def tables=(tables)
+      @@tables = tables if tables.is_a?(Array)
     end
   end
 end

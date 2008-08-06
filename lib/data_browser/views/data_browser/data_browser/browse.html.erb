@@ -1,8 +1,8 @@
-<% form_tag({:model => @model.to_s}, {:id => "search_form"}) do %>
+<% form_tag(data_browser_model_path(:model => current_model_id), {:id => "search_form"}) do %>
 <div id="search-box" style="display:none">
 <p>
     <label>Select</label><br />
-    <% for column in @model.column_names %>
+    <% for column in current_model.column_names %>
     <label><%= check_box_tag("select[]", column, params[:select].include?(column)) %><%= column %></label>
     <% end %>
 </p>

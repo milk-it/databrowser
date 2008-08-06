@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = "databrowser"
-  s.version = "0.8"
+  s.version = "0.9"
   s.specification_version = 2 if s.respond_to? :specification_version=
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Carlos Junior"]
-  s.date = "2008-06-07"
+  s.date = "2008-08-05"
   s.description = "Rails DataBrowser helps you in development providing an easy to use interface to access your database. This can be also used in production mode, as an interface to your data."
   s.email = ["carlos@milk-it.net"]
   s.extra_rdoc_files = ["README", "MIT-LICENSE"]

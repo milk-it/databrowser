@@ -1,8 +1,8 @@
 <ul>
-  <% @models.each do |model| %>
+  <% @models.each_with_index do |model, i| %>
   <li>
-    <%= link_to(model.to_s, :action => "browse", :model => model.to_s) %> (<%=model.count%> records)
-    <%= link_to("empty", {:action => "empty", :model => model.to_s}, :confirm => "Are you sure?") %>
+    <%= link_to(model.table_name, data_browser_model_path(:model => i)) %> (<%= model.count %> records)
+    <%= link_to("empty", data_browser_model_path(:model => i), :confirm => "Are you sure?", :method => :delete) %>
   </li>
   <% end %>
 </ul>

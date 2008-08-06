@@ -209,15 +209,15 @@ document.getElementById("show-search").style.display = "none";
 </script>
 </head>
 <body id="home">
-    <h1><%= link_to("<b>Rails</b>DataBrowser", :action => "index") %></h1>
+    <h1><%= link_to("<b>Rails</b>DataBrowser", data_browser_home_path()) %></h1>
     <ul id="models">
-	<% for model in @models %>
-        <li><%= link_to(model.to_s, :action => "browse", :model => model.to_s) %></li>
+	<% @models.each_with_index do |model, i| %>
+        <li><%= link_to(model.table_name, data_browser_model_path(:model => i)) %></li>
 	<% end %>
     </ul>
     <div id="content">
-        <% if @model %>
-        <h2><%= @model.to_s %> (<%=@model.table_name%> table) <%= link_to("new", :action => "new", :model => @model.to_s) %></h2>
+        <% if current_model %>
+        <h2><%= current_model.table_name %> <%= link_to("new", data_browser_new_path(:model => current_model_id)) %></h2>
         <% end %>
         <%= content_tag(:h3, flash[:notice], :class => "notice") if flash[:notice] %>
         <%= yield %>
@@ -225,12 +225,12 @@ document.getElementById("show-search").style.display = "none";
     <div style="clear:both">&nbsp;</div>
     <div id="footer">
         <p class="left">
-        Powered by <%= link_to "DataBrowser", :action => "about" %><br />
+        Powered by <%= link_to("DataBrowser", data_browser_about_path()) %><br />
         by <a href="http://milk-it.net">Milk-it</a>
         </p>
         <p class="right">
             Visit Rails DataBrowser Official WebSite.<br />
-            <a href="http://trac.milk-it.net/open/wiki/DataBrowser">trac.milk-it.net/open</a>
+            <a href="http://redmine.milk-it.net/projects/show/databrowser">redmine.milk-it.net/projects</a>
         </p>
     </div>
 </body>
