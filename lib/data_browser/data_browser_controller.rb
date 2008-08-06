@@ -4,10 +4,12 @@ module DataBrowser
     protect_from_forgery :secret => Time.now.to_i.to_s
     before_filter :load_models, :authenticate
 
-    helper_method :current_model, :current_model_id
+    include DataBrowser::Helpers
 
     # all the work here is being done by :load_models
     def index; end
+    def new; end
+    def edit; end
 
     def browse
       params[:select] ||= current_model.column_names
@@ -25,38 +27,25 @@ module DataBrowser
     def empty
       current_model.delete_all
       flash[:notice] = "#{current_model.table_name} model was emptied"
-      redirect_to :action => "index"
-    end
-
-    def new
-      @obj = current_model.new
-    end
-
-    def edit
-      @obj = current_model.find(params[:id])
+      redirect_to data_browser_home_url()
     end
 
     def destroy
-      @obj = current_model.find(params[:id])
-      @obj.destroy()
+      current_object.delete_all(current_object.attributes)
       flash[:notice] = "#{current_model.table_name} #{@obj.to_param} successfuly deleted!"
-      redirect_to :action => "browse", :model => current_model_id
+      redirect_to data_browser_model_url(:model => current_model_id)
     end
 
     def update
-      @obj = current_model.find(params[:id])
-      @obj.update_attributes(params[current_model.to_s.underscore])
-
+      current_model.update_all(data_from_params, current_object.attributes)
       flash[:notice] = "#{current_model.table_name} #{@obj.to_param} successfuly saved!"
-      redirect_to :action => "browse", :model => current_model_id
+      redirect_to data_browser_model_url(:model => current_model_id)
     end
 
     def create
-      @obj = current_model.new(params[current_model.to_s.underscore])
-    
-      @obj.save(false)
-      flash[:notice] = "#{current_model.table_name} #{@obj.to_param} successfuly saved!"
-      redirect_to :action => "browse", :model => current_model_id
+      current_model.create(data_from_params)
+      flash[:notice] = "#{current_model.table_name} #{current_object.to_param || "record"} successfuly saved!"
+      redirect_to data_browser_model_url(:model => current_model_id)
     end
 
     protected
@@ -80,12 +69,11 @@ module DataBrowser
       end
     end
 
-    def current_model
-      @model ||= DataBrowser.models[current_model_id] if current_model_id
-    end
+    private
 
-    def current_model_id
-      params[:model].to_i if params[:model]
+    def data_from_params
+      pos = ActionController::RecordIdentifier.singular_class_name(current_model)
+              current_model.new(params[pos]).attributes # Hum... well, you know..
     end
   end
 end

@@ -1,6 +1,6 @@
     <tr class="<%= cycle("odd", "") %>">
-      <td><%= link_to("Edit", data_browser_edit_path(:id => obj.to_param, :model => current_model_id)) unless obj.to_param.nil? %></td>
-      <td><%= link_to("Delete", data_browser_object_path(:id => obj.to_param, :model => current_model_id), :method => :delete, :confirm => "Are you sure?") unless obj.to_param.nil? %></td>
+      <td><%= link_to("Edit", data_browser_edit_path(object_params(obj))) %></td>
+      <td><%= link_to("Delete", data_browser_object_path(object_params(obj)), :method => :delete, :confirm => "Are you sure?") %></td>
       <% for column in params[:select] %>
       <td><%= obj.attributes[column] %></td>
       <% end %>
