@@ -1,20 +1,19 @@
-DataBrowser
-===========
+= DataBrowser
 
 To start using Rails DataBrowser, put `map.databrowser` in the your routes.rb file.
 Please, don't forget to require 'data_browser' att he begining of your routes.rb
 
-Example
-=======
+== Example
 
-require 'data_browser'
-ActionController::Routing::Routes.draw do |map|
-  # your routes
-  map.databrowser
-end
+  require 'data_browser'
+  ActionController::Routing::Routes.draw do |map|
+    # your routes
+    map.databrowser
+  end
 
 or use:
-map.databrowser if RAILS_ENV.eql?("development")
+
+  map.databrowser if RAILS_ENV.eql?("development")
 
 for development mode only.
 

@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.date = "2008-08-06"
   s.description = "Rails DataBrowser helps you in development providing an easy to use interface to access your database. This can be also used in production mode, as an interface to your data."
   s.email = ["carlos@milk-it.net"]
-  s.extra_rdoc_files = ["README", "MIT-LICENSE"]
+  s.extra_rdoc_files = ["README.rdoc", "MIT-LICENSE"]
   s.files = [
     "README", "Rakefile", "MIT-LICENSE", "install.rb", "uninstall.rb",
     "lib/data_browser.rb", "lib/data_browser/data_browser.rb", "lib/data_browser/data_browser_controller.rb",
